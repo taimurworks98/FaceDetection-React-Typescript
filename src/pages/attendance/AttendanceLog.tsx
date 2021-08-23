@@ -3,7 +3,7 @@
  import React, { useState, useEffect } from 'react'
  import Attendance from '../admin/Attendance';
  import Paper from '@material-ui/core/Paper';
- import Appbar, { AppbarAttendance } from '../../components/Appbar';
+ import { AppbarAttendance } from '../../components/Appbar';
  import Copyright from '../../components/Copyright';
  import Container from '@material-ui/core/Container';
  import Box from '@material-ui/core/Box';

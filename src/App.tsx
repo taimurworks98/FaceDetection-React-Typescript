@@ -9,6 +9,7 @@ import TrespassingLog from './pages/trespassing/TrespassingLog';
 import AddDepartments from './pages/departments/AddDepartments';
 import AttendanceLog from './pages/attendance/AttendanceLog';
 import UserList from './pages/users/UserList';
+import AddAttendance from './pages/attendance/addAttendance';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
               <Route path='/TrespassingLog'><TrespassingLog/></Route>
               <Route path='/UserRegistration' component={UserRegistration}/>
               <Route path='/UserList' component={UserList}/>
+              <Route path='/AddAttendance' component={AddAttendance}/>
             </Switch>
     </Router>
     // <div className="App">

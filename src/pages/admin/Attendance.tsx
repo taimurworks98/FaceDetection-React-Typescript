@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter as Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Title from './Title';
 import Paper from '@material-ui/core/Paper';
@@ -10,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import { NONAME } from 'dns';
 
 interface Column {
   id: 'name' | 'department' | 'role' | 'date' | 'attendance';
@@ -84,7 +86,13 @@ export default function Attendance() {
   };
   return (
     <React.Fragment>
-      <Title>Attendance</Title>
+      <Title>Attendance
+      
+      <Button color="primary" variant="contained" style={{marginLeft:'86%',width:'max-content'}}>
+        <a href="/AddAttendance" style={{textDecoration:'none', color:'white'}}>Add Attendance</a>
+      </Button>
+      
+      </Title>
       <Paper>
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table" >
