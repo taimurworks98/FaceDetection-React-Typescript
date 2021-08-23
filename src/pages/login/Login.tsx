@@ -69,9 +69,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     
   },
-  // h4: {
-  //   color:'#ffffff',
-  // },
 }));
 
 export default function SignIn() {
