@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 200;
+    src: url(https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3i94_wlxdr.ttf) format('truetype');
+    }
+    @font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 300;
+    src: url(https://fonts.gstatic.com/s/sourcesanspro/v14/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwlxdr.ttf) format('truetype');
+    }
+.homecmp-container .webcam-container
+{
+display: flex;
+align-self: center;
+flex-direction: column;
+text-align: center;
+padding:10px 0;
+}
+.homecmp-container .webcam-container .webcam-btn
+{
+margin-top: 10px;
+width:30%;
+text-align: center;
+
+}
