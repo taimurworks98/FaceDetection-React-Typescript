@@ -33,8 +33,9 @@ class AddAttendance extends React.Component {
       <div className="ui main" style={{marginLeft:'20%', marginTop:'7%'}}>
         <AppbarAttendance/>
         <form className="ui form" onSubmit={this.add}>
-          <div className="field">
-            <label>NAME</label>
+            
+            <div className="field">
+            <label>Name: </label>
             <input
               type="text"
               name="name"
@@ -44,7 +45,7 @@ class AddAttendance extends React.Component {
             />
           </div>
           <div className="field">
-            <label>DEPARTMENT</label>
+            <label>Department: </label>
             <input
               type="text"
               name="department"
@@ -54,7 +55,7 @@ class AddAttendance extends React.Component {
             />
           </div>
           <div className="field">
-            <label>ROLE</label>
+            <label>Role: </label>
             <input
               type="text"
               name="role"
@@ -64,7 +65,7 @@ class AddAttendance extends React.Component {
             />
           </div>
           <div className="field">
-            <label>DATE</label>
+            <label>Date: </label>
             <input
               type="text"
               name="date"
@@ -74,7 +75,7 @@ class AddAttendance extends React.Component {
             />
           </div>
           <div className="field">
-            <label>ATTENDANCE</label>
+            <label>Attendance: </label>
             <input
               type="text"
               name="attendance"

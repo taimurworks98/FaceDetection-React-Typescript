@@ -4,22 +4,24 @@ import { AppbarAttendance } from '../../components/Appbar';
 class EditContact extends React.Component {
   constructor(props) {
     super(props);
-    const { id, name, email } = props.location.state.contact;
+    const { name, department, role, date, attendance } = props.location.state.contact;
     this.state = {
-      id,
       name,
-      email,
+      department,
+      role,
+      date,
+      attendance,
     };
   }
 
   update = (e) => {
     e.preventDefault();
-    if (this.state.name === "" || this.state.email === "") {
+    if (this.state.name === "" || this.state.department === "" || this.state.role === "" || this.state.date === "" || this.state.attendance === "") {
       alert("ALl the fields are mandatory!");
       return;
     }
     this.props.updateContactHandler(this.state);
-    this.setState({ name: "", email: "" });
+    this.setState({ name: "", department: "", role: "", date: "", attendance: "" });
     this.props.history.push("/");
   };
   render() {
@@ -27,8 +29,8 @@ class EditContact extends React.Component {
       <div className="ui main">
         <AppbarAttendance/>
         <form className="ui form" onSubmit={this.update}>
-          <div className="field">
-            <label>NAME</label>
+        <div className="field">
+            <label>Name: </label>
             <input
               type="text"
               name="name"
@@ -36,15 +38,45 @@ class EditContact extends React.Component {
               value={this.state.name}
               onChange={(e) => this.setState({ name: e.target.value })}
             />
-          </div>
-          <div className="field">
-            <label>EMAIL</label>
+        </div>
+        <div className="field">
+            <label>Department: </label>
             <input
               type="text"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={(e) => this.setState({ email: e.target.value })}
+              name="department"
+              placeholder="Department"
+              value={this.state.department}
+              onChange={(e) => this.setState({ department: e.target.value })}
+            />
+          </div>
+          <div className="field">
+            <label>Role: </label>
+            <input
+              type="text"
+              name="role"
+              placeholder="Role"
+              value={this.state.role}
+              onChange={(e) => this.setState({ role: e.target.value })}
+            />
+          </div>
+          <div className="field">
+            <label>Date: </label>
+            <input
+              type="text"
+              name="date"
+              placeholder="Date"
+              value={this.state.date}
+              onChange={(e) => this.setState({ date: e.target.value })}
+            />
+          </div>
+          <div className="field">
+            <label>Attendance: </label>
+            <input
+              type="text"
+              name="attendance"
+              placeholder="Attendance"
+              value={this.state.attendance}
+              onChange={(e) => this.setState({ attendance: e.target.value })}
             />
           </div>
           <button className="ui button blue">UPDATE</button>
