@@ -10,6 +10,7 @@ import AddDepartments from './pages/departments/AddDepartments';
 import AttendanceLog from './pages/attendance/AttendanceLog';
 import UserList from './pages/users/UserList';
 import AddAttendance from './pages/attendance/addAttendance';
+import EditAttendance from './pages/attendance/editAttendance';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path='/UserRegistration' component={UserRegistration}/>
               <Route path='/UserList' component={UserList}/>
               <Route path='/AddAttendance' component={AddAttendance}/>
+              <Route path='/EditAttendance' component={EditAttendance}/>
             </Switch>
     </Router>
     // <div className="App">

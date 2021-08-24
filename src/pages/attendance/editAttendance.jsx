@@ -1,10 +1,10 @@
 import React from "react";
 import { AppbarAttendance } from '../../components/Appbar';
 
-class EditContact extends React.Component {
+class EditAttendance extends React.Component {
   constructor(props) {
     super(props);
-    const { name, department, role, date, attendance } = props.location.state.contact;
+    const { name, department, role, date, attendance } = props.location.state.attendance;
     this.state = {
       name,
       department,
@@ -20,7 +20,7 @@ class EditContact extends React.Component {
       alert("ALl the fields are mandatory!");
       return;
     }
-    this.props.updateContactHandler(this.state);
+    this.props.updateAttendanceHandler(this.state);
     this.setState({ name: "", department: "", role: "", date: "", attendance: "" });
     this.props.history.push("/");
   };
@@ -86,4 +86,4 @@ class EditContact extends React.Component {
   }
 }
 
-export default EditContact;
+export default EditAttendance;

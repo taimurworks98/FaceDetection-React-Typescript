@@ -128,7 +128,9 @@ export default function Attendance() {
                       );
                     })}
                     <TableCell>
-                    <Button color="primary" variant="contained" style={{marginRight:10}}>Edit</Button>
+                    <Button color="primary" variant="contained" style={{marginRight:10}}>
+                    <a href="/EditAttendance" style={{textDecoration:'none', color:'white'}}>Edit</a>
+                    </Button>
                     </TableCell>
                     <TableCell>
                     <Button color="secondary" variant="contained" style={{marginRight:10}}>Delete</Button>
