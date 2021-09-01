@@ -2,6 +2,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
 import React, { useState, useEffect } from 'react'
 import { Grid, } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from '../../components/controls/useForm';
 import * as employeeService from "../users/employeeService";
@@ -33,8 +34,9 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: '#F5F5F5',
     },
     imageList: {
-        width: 500,
+        width: 450,
         height: 300,
+        marginLeft: '16.5%!important',
       },
       icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -52,6 +54,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       overflow: 'auto',
       flexDirection: 'column',
+    },
+    input: {
+      display: 'none',
     },
   }),
 );
@@ -130,93 +135,100 @@ const loadFile = function(event:any) {
       <AppbarTrespassers/>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-        
-          <Form onSubmit={handleSubmit}>
-            <Grid container>
-                <Grid item xs={6}>
-                <br/>
-                  <form >
-                    <label style={{marginLeft:100}}>Select images : </label>
-                    <input type="file" id="myfile" accept="image/*" onChange={ e => loadFile(e)} name="myfile" multiple/>
-                    <br />
-                    <br />
-                    <ImageList rowHeight={180} className={classes.imageList}>
-                      <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
-                        <ListSubheader component="div" style={{marginLeft:180}}>Trespassers</ListSubheader>
-                      </ImageListItem>
-                    
-                      <ImageListItem style={{width:'70%',height:'100%'}}>
+                <Form onSubmit={handleSubmit}>
+                  <Grid container>
+                    <Grid item xl={6} lg={6} md={12} sm={12} xs={12} zeroMinWidth>
+                      <br/>
+                      {/* <label style={{marginLeft:90}}>Select images : </label> */}
+                        <input
+                          accept="image/*"
+                          className={classes.input}
+                          id="contained-button-file"
+                          multiple
+                          type="file"
+                          onChange={ e => loadFile(e)}
+                        />
+                        <label htmlFor="contained-button-file" >
+                        <Button variant="outlined" color="primary" component="span" size="small" style={{marginLeft:'32%'}}>
+                          Choose Images
+                        </Button>
+                        </label>
+                        <br />
+                        <br />
+                        <ImageList rowHeight={180} className={classes.imageList}>
+                          <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
+                            <ListSubheader component="div" style={{marginLeft:'100px'}}>Trespassers</ListSubheader>
+                          </ImageListItem>
+                          
+                          <ImageListItem style={{width:'70%'}}>
+                            <img id="output"/>
+                          </ImageListItem>                   
+                        </ImageList>
                         <img id="output"/>
-                      </ImageListItem>                   
-                    </ImageList>
-                    <img id="output"/>
-                    <br />
-                    <br />
-                    {/* <input type="submit" style={{marginLeft:210}}/> */}
-                  </form>
-                <br/>
-                <br/>
-                    
-                </Grid>
-                <Grid item xs={6}>
-                    <Controls.Input
+                        <br />
+                        <br />
+                        {/* <input type="submit" style={{marginLeft:210}}/> */}
+                        
+                      <br/>
+                      <br/>
+                          
+                    </Grid>
+                    <Grid item xl={6} lg={6} md={12} sm={12} xs={12} zeroMinWidth>
+                      <Controls.Input
                         label="Id"
                         name="id"
                         value={values.id}
                         onChange={handleInputChange}
-                    />
-                    <Controls.Input
+                      />
+                      <Controls.Input
                         name="fullName"
                         label="Full Name"
                         value={values.fullName}
                         onChange={handleInputChange}
-                    />
-                    <Controls.RadioGroup
+                      />
+                      <Controls.RadioGroup
                         name="user"
                         label=""
                         value={values.user}
                         onChange={handleInputChange}
                         items={UserItems}
-                    />
-                    <Controls.Select
+                      />
+                      <Controls.Select
                         name="departmentId"
                         label="Department"
                         value={values.departmentId}
                         onChange={handleInputChange}
                         options={employeeService.getDepartmentCollection()}
-                    />
-                    <Controls.Checkbox
+                      />
+                      <Controls.Checkbox
                         name="isPermanent"
                         label="Permanent Employee"
                         value={values.isPermanent}
                         onChange={handleInputChange}
-                    />
-                    <div style={{float:'left',marginLeft:'60px'}}>
+                      />
+                      <div style={{float:'left',marginLeft:'5px'}}>
                         <Controls.Button
-                            type="submit"
-                            text="Submit" />
+                          type="submit"
+                          text="Submit" />
                         <Controls.Button
-                            text="Reset"
-                            color="default"
-                            onClick={resetForm} />
-                    </div>
-                </Grid>
-            </Grid>
-          </Form>
-
-          </Paper>
+                          text="Reset"
+                          color="default"
+                          onClick={resetForm} />
+                      </div>
+                    </Grid>
+                  </Grid>
+                </Form>
+              </Paper>
             </Grid>
           </Grid>
           <Box pt={4}>
             <Copyright />
           </Box>
         </Container>
-
       </main>
     </div>
   );

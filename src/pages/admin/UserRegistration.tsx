@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Grid, } from '@material-ui/core';
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from '../../components/controls/useForm';
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '100vh',
       overflow: 'auto',
       padding: theme.spacing(3),
+      backgroundColor: '#F5F5F5',
     },
     container: {
       paddingTop: theme.spacing(4),
@@ -81,7 +82,7 @@ export default function UserRegistration(props:any) {
 
     if (fieldValues === values)
         return Object.values(temp).every(x => x === "")
-}
+  }
 
 const {
     values,
@@ -115,13 +116,13 @@ const handleSubmit = (e: { preventDefault: () => void; }) => {
 
               <Form onSubmit={handleSubmit}>
                 <Grid container>
-                <Grid item xs={6}>
+                <Grid item xl={6} lg={6} md={6} sm={12} xs={12} zeroMinWidth>
                   <div style={{padding: '1%', marginLeft:'18%' }}>
                        <WebcamCapture/>
                   </div>
 
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xl={6} lg={6} md={6} sm={12} xs={12} zeroMinWidth>
                     <Controls.Input
                         label="Id"
                         name="id"
@@ -154,7 +155,7 @@ const handleSubmit = (e: { preventDefault: () => void; }) => {
                         value={values.isPermanent}
                         onChange={handleInputChange}
                     />
-                    <div style={{float:'left',marginLeft:'60px'}}>
+                    <div style={{float:'left',marginLeft:'5px'}}>
                         <Controls.Button
                             type="submit"
                             text="Submit" />

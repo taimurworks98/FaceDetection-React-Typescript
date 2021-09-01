@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Webcam from "react-webcam";
+import Button from '@material-ui/core/Button';
+
 import './webcam.css'
 
 
@@ -50,6 +52,10 @@ export const WebcamCapture = () => {
                         capture();
                     }}
                         className="webcam-btn">Capture</button>
+
+                    //     <Button variant="outlined" color="primary" component="span" style={{marginLeft:'30%'}}>
+                    //     Choose Images
+                    //    </Button>
                 }
             </div>
         </div>

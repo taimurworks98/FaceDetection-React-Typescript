@@ -86,13 +86,15 @@ export default function Attendance() {
   };
   return (
     <React.Fragment>
-      <Title>Attendance
       
-      <Button color="primary" variant="contained" style={{marginLeft:'86%',width:'max-content'}}>
+      <div style={{marginBottom:'1.3%'}}>
+      <Title>Attendance
+      <Button color="primary" variant="contained" style={{marginLeft:'0%', width:'max-content', float:'right'}}>
         <a href="/AddAttendance" style={{textDecoration:'none', color:'white'}}>Add Attendance</a>
       </Button>
-      
       </Title>
+      </div>
+
       <Paper>
         <TableContainer className={classes.container}>
           <Table stickyHeader aria-label="sticky table" >

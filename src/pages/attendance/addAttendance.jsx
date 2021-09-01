@@ -1,24 +1,89 @@
 import React from "react";
+import { Grid, } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Controls from "../../components/controls/Controls";
+import * as employeeService from "../users/employeeService";
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
+import { useForm, Form } from '../../components/controls/useForm';
 import { AppbarAttendance } from '../../components/Appbar';
 
-// interface AddContact {
-//     addContactHandler?: any;
-//     History?: any;
-//   }
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+    },
+    // necessary for content to be below app bar
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    content: {
+      flexGrow: 1,
+      height: '100vh',
+      overflow: 'auto',
+      padding: theme.spacing(3),
+      backgroundColor: '#F5F5F5',
+    },
+    container: {
+      paddingTop: theme.spacing(4),
+      paddingBottom: theme.spacing(4),
+      display: 'flex',
+      overflow: 'auto',
+      flexDirection: 'column',
+    },
+    paper: {
+      padding: theme.spacing(2),
+      display: 'flex',
+      overflow: 'auto',
+      flexDirection: 'column',
+    },
+  }),
+);
+
+const initialFValues = {
+  name: "",
+  department: "",
+  role: "",
+  date: "",
+  attendance: "",
+  Date: new Date(),
+};
+
+const UserItems = [
+  { id: 'superAdmn', title: 'Super Admin' },
+  { id: 'admin', title: 'Admin' },
+  { id: 'user', title: 'User' },
+]
+
+export default function AddAttendance(props){
+
+  const classes = useStyles();
+
   
-//   interface AddContact {
-//   }
 
-class AddAttendance extends React.Component {
-  state = {
-    name: "",
-    department: "",
-    role: "",
-    date: "",
-    attendance: "",
-  };
+  const validate = (fieldValues = values) => {
+    let temp = { ...errors  }
+    if ('fullName' in fieldValues)
+        temp.fullName = fieldValues.fullName ? "" : "This field is required."
+    // if ('department' in fieldValues)
+    // temp.fullName = fieldValues.fullName ? "" : "This field is required."
+    // if ('mobile' in fieldValues)
+    //     temp.mobile = fieldValues.mobile.length > 9 ? "" : "Minimum 10 numbers required."
+    if ('departmentId' in fieldValues)
+        temp.departmentId = fieldValues.departmentId.length !== 0 ? "" : "This field is required."
+    setErrors({
+        ...temp
+    })
 
-  add = (e) => {
+    if (fieldValues === values)
+        return Object.values(temp).every(x => x === "")
+  }
+
+  const add = (e) => {
     e.preventDefault();
     if (this.state.name === "" || this.state.department === "" || this.state.role === "" || this.state.date === "" || this.state.attendance === "") {
       alert("ALl the fields are mandatory!");
@@ -28,13 +93,86 @@ class AddAttendance extends React.Component {
     this.setState({ name: "", department: "", role: "", date: "", attendance: "" });
     this.props.history.push("/");
   };
-  render() {
+  
+    const {
+      values,
+      // setValues,
+      errors,
+      setErrors,
+      handleInputChange,
+      resetForm
+  } = useForm(initialFValues, true, validate);
+  
+  const handleSubmit = (e) => {
+    if (this.state.name === "" || this.state.department === "" || this.state.role === "" || this.state.date === "" || this.state.attendance === "") {
+      alert("ALl the fields are mandatory!");
+      return;
+    }
+    this.props.addAttendanceHandler(this.state);
+    this.setState({ name: "", department: "", role: "", date: "", attendance: "" });
+    this.props.history.push("/");
+      // e.preventDefault()
+      // if (validate()){
+      //     employeeService.insertEmployee(values)
+      //     resetForm()
+      // }
+  }
     return (
-      <div className="ui main" style={{marginLeft:'20%', marginTop:'7%'}}>
+      <div className={classes.root}>
+        <CssBaseline />
         <AppbarAttendance/>
-        <form className="ui form" onSubmit={this.add}>
+      <main className={classes.content}>
+      <div className={classes.toolbar} />
+      <Container maxWidth="lg" className={classes.container}>
+        <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+        <Form onSubmit={handleSubmit}>
+        <Grid item xs={6}>
+            <Controls.Input
+                name="fullName"
+                label="Full Name"
+                value={values.fullName}
+                onChange={handleInputChange}
+            />
+            <Controls.Select
+                name="departmentId"
+                label="Department"
+                value={values.departmentId}
+                onChange={handleInputChange}
+                options={employeeService.getDepartmentCollection()}
+            />
+            <Controls.RadioGroup
+                name="user"
+                label=""
+                value={values.user}
+                onChange={handleInputChange}
+                items={UserItems}
+            />
+            {/* <Controls.Input
+                label="Id"
+                name="id"
+                value={values.id}
+                onChange={handleInputChange}
+            /> */}
+            <Controls.DatePicker
+                name="Date"
+                label="Date"
+                value={values.Date}
+                onChange={handleInputChange}
+            />
+          <div style={{float:'left',marginLeft:'60px'}}>
+            <Controls.Button
+                type="submit"
+                text="Submit" />
+            <Controls.Button
+                text="Reset"
+                color="default"
+                onClick={resetForm} />
+          </div>
+        </Grid>
             
-            <div className="field">
+            {/* <div className="field">
             <label>Name: </label>
             <input
               type="text"
@@ -84,11 +222,14 @@ class AddAttendance extends React.Component {
               onChange={(e) => this.setState({ attendance: e.target.value })}
             />
           </div>
-          <button className="ui button blue">Add</button>
-        </form>
+          <button className="ui button blue">Add</button> */}
+        </Form>
+        </Paper>
+        </Grid>
+        </Grid>
+        </Container>
+        </main>
       </div>
     );
-  }
+  
 }
-
-export default AddAttendance;

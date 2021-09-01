@@ -109,7 +109,7 @@ const handleSubmit = (e: { preventDefault: () => void; }) => {
                       />
                     
                     
-                      <div style={{float:'left',marginLeft:'60px'}}>
+                      <div style={{float:'left',marginLeft:'5px'}}>
                         <Controls.Button
                             type="submit"
                             text="Submit" />
